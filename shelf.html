@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shelf — [Martin Muchiri]</title>
+  <title>Shelf</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=Space+Mono:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:#111009;--surface:#1A1814;
-      --text:#F0EAE0;--muted:#9A9080;--faint:#5C5548;
-      --amber:#D4923A;--amber-d:#8A5A1A;--amber-g:#F0B060;
-      --green:#4A7C5F;--green-d:#2A4A38;
-      --border:#2E2A24;--border2:#3A362E;
+      --bg:#111009; --s1:#1A1814; --s2:#221F19; --s3:#2A2720;
+      --text:#F0EAE0; --muted:#9A9080; --faint:#5C5548;
+      --amber:#D4923A; --amber-d:#8A5A1A; --amber-g:#F0B060;
+      --green:#4A7C5F; --green-d:#2A4A38;
+      --red:#8A3A3A; --red-d:#3A1A1A;
+      --border:#2E2A24; --border2:#3A362E;
       --serif:'Fraunces',Georgia,serif;
       --body:'Source Serif 4',Georgia,serif;
       --mono:'Space Mono',monospace;
-      --max:660px;--pad:clamp(1.25rem,5vw,2.5rem);
+      --max:700px; --pad:clamp(1.25rem,5vw,2.5rem);
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{font-size:16px;scroll-behavior:smooth;}
@@ -27,93 +28,154 @@
     a:hover{color:var(--amber-g);border-color:var(--amber);}
     .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
 
+    /* ── NAV ── */
     nav{position:sticky;top:0;z-index:100;background:rgba(17,16,9,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:1rem var(--pad);}
     .nav-inner{max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
-    .nav-home{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--faint);border:none;display:flex;align-items:center;gap:.5rem;transition:color .2s;}
-    .nav-home:hover{color:var(--muted);border:none;}
-    .nav-home::before{content:'←';font-size:.7rem;}
-    .nav-name{font-family:var(--serif);font-weight:300;font-size:.9rem;color:var(--text);border:none;}
-    .nav-name:hover{color:var(--amber);border:none;}
+    .mark{width:32px;height:32px;border:1px solid rgba(240,234,224,.2);border-radius:2px;display:flex;align-items:center;justify-content:center;text-decoration:none;border-bottom:none;transition:border-color .2s;flex-shrink:0;}
+    .mark:hover{border-color:rgba(240,234,224,.45);border-bottom:none;}
+    .mark span{font-family:var(--serif);font-style:italic;font-weight:300;font-size:.95rem;color:var(--text);line-height:1;letter-spacing:-.02em;}
     .nav-links{display:flex;gap:1.5rem;list-style:none;}
     .nav-links a{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);border:none;transition:color .2s;}
-    .nav-links a:hover{color:var(--amber);}
-    .nav-links a.current{color:var(--amber);}
+    .nav-links a:hover,.nav-links a.cur{color:var(--amber);border:none;}
 
-    .page-header{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:3rem;}
-    .page-eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem;}
+    /* ── PAGE HEADER ── */
+    .page-header{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem;}
+    .eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem;}
     h1{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(2rem,5vw,2.75rem);line-height:1.15;letter-spacing:-.01em;color:var(--text);}
-    .header-note{font-size:.88rem;color:var(--faint);font-style:italic;margin-top:.75rem;font-family:var(--body);}
+    .header-sub{font-size:.82rem;color:var(--faint);font-family:var(--mono);margin-top:.75rem;font-style:italic;}
 
-    .label{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;}
-    .label::after{content:'';flex:1;height:1px;background:var(--border);}
-
-    .section{padding:2.5rem 0;}
-    .section+.section{border-top:1px solid var(--border);}
-
-    /* Tabs */
-    .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:2rem;}
+    /* ── TABS ── */
+    .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:0;}
     .tab{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);padding:.65rem 1.1rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s;user-select:none;}
     .tab:hover{color:var(--muted);}
     .tab.active{color:var(--amber);border-bottom-color:var(--amber);}
-    .panel{display:none;}
+    .panel{display:none;padding-top:2rem;}
     .panel.active{display:block;}
 
-    /* Media grid */
-    .m-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:1.5rem;}
-    .m-card{display:flex;flex-direction:column;gap:.55rem;}
-    .m-cover{border:1px solid var(--border);position:relative;overflow:hidden;transition:border-color .2s;}
-    .m-card:hover .m-cover{border-color:var(--amber-d);}
-    .m-cover.book{aspect-ratio:2/3;}
-    .m-cover.album,.m-cover.pod{aspect-ratio:1/1;}
+    /* ── ADD BUTTON ── */
+    .add-btn{
+      display:inline-flex;align-items:center;gap:.5rem;
+      font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--amber);border:1px solid var(--amber-d);padding:.45rem .9rem;
+      cursor:pointer;background:none;margin-bottom:1.75rem;
+      transition:border-color .2s,color .2s;
+    }
+    .add-btn:hover{border-color:var(--amber);color:var(--amber-g);}
+    .add-btn svg{width:12px;height:12px;flex-shrink:0;}
 
-    /* Book colours */
-    .bk1{background:linear-gradient(155deg,#1A2030,#0E1520);border-left:3px solid #3A5A8A;}
-    .bk2{background:linear-gradient(155deg,#2A1810,#1A0E08);border-left:3px solid #8A4A1A;}
-    .bk3{background:linear-gradient(155deg,#102018,#081410);border-left:3px solid #2A6A4A;}
-    .bk4{background:linear-gradient(155deg,#1E1020,#120A14);border-left:3px solid #6A3A8A;}
-    .bk5{background:linear-gradient(155deg,#201A10,#14100A);border-left:3px solid #8A7A2A;}
-    .bk6{background:linear-gradient(155deg,#201010,#140808);border-left:3px solid #8A2A2A;}
-    .bk7{background:linear-gradient(155deg,#101820,#0A1018);border-left:3px solid #2A4A7A;}
-    .bk8{background:linear-gradient(155deg,#1A1A10,#10100A);border-left:3px solid #6A6A2A;}
+    /* ── MODAL OVERLAY ── */
+    .overlay{
+      position:fixed;inset:0;background:rgba(8,7,5,.88);
+      z-index:200;display:none;align-items:center;justify-content:center;
+      padding:1.5rem;
+    }
+    .overlay.open{display:flex;}
 
-    /* Album / podcast colours */
-    .al1{background:linear-gradient(135deg,#1A1020,#2A1030);}
-    .al2{background:linear-gradient(135deg,#101A10,#102010);}
-    .al3{background:linear-gradient(135deg,#1A1010,#201818);}
-    .pd1{background:linear-gradient(135deg,#101820,#0A1018);}
-    .pd2{background:linear-gradient(135deg,#181020,#100A18);}
-    .pd3{background:linear-gradient(135deg,#101A14,#0A1410);}
+    .modal{
+      background:var(--s2);border:1px solid var(--border2);
+      width:100%;max-width:420px;padding:1.75rem;
+    }
+    .modal h2{font-family:var(--serif);font-weight:300;font-style:italic;font-size:1.3rem;color:var(--text);margin-bottom:1.5rem;}
 
-    .spine{font-family:var(--mono);font-size:.45rem;color:rgba(255,255,255,.13);writing-mode:vertical-rl;transform:rotate(180deg);position:absolute;left:.9rem;top:.75rem;bottom:.75rem;overflow:hidden;letter-spacing:.06em;}
-    .cover-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.07;}
+    .field{margin-bottom:1.1rem;}
+    .field label{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:.4rem;}
+    .field input,.field textarea,.field select{
+      width:100%;background:var(--s3);border:1px solid var(--border);
+      color:var(--text);font-family:var(--body);font-size:.9rem;
+      padding:.6rem .75rem;outline:none;transition:border-color .2s;
+      border-radius:0;-webkit-appearance:none;
+    }
+    .field textarea{height:80px;resize:vertical;font-size:.85rem;}
+    .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--amber-d);}
+    .field select option{background:var(--s2);}
 
-    .m-title{font-family:var(--serif);font-size:.8rem;font-weight:400;color:var(--text);line-height:1.3;}
-    .m-author{font-family:var(--mono);font-size:.58rem;color:var(--faint);margin-top:-.15rem;}
-    .m-status{font-family:var(--mono);font-size:.52rem;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);margin-top:-.1rem;}
+    /* Star rating in form */
+    .star-row{display:flex;gap:.4rem;margin-top:.25rem;}
+    .star-btn{
+      background:none;border:none;cursor:pointer;
+      font-size:1.2rem;color:var(--faint);padding:0;
+      transition:color .15s;line-height:1;
+    }
+    .star-btn.lit,.star-btn:hover~.star-btn,.star-btn:hover{color:var(--amber);}
 
-    /* Podcasts list view (easier to fill in) */
-    .pod-list{list-style:none;}
-    .pod-item{padding:1.1rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:2.5rem 1fr;gap:.85rem;align-items:start;}
-    .pod-item:first-child{border-top:1px solid var(--border);}
-    .pod-num{font-family:var(--mono);font-size:.58rem;color:var(--amber-d);padding-top:.2rem;}
-    .pod-name{font-family:var(--serif);font-weight:400;font-size:.95rem;color:var(--text);margin-bottom:.2rem;line-height:1.35;}
-    .pod-host{font-size:.8rem;color:var(--muted);}
-    .pod-status{font-family:var(--mono);font-size:.52rem;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);margin-top:.3rem;}
+    .modal-btns{display:flex;gap:.75rem;margin-top:1.5rem;justify-content:flex-end;}
+    .modal-btn{
+      font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;
+      padding:.45rem .9rem;border:1px solid var(--border2);background:none;color:var(--muted);
+      cursor:pointer;transition:border-color .2s,color .2s;
+    }
+    .modal-btn:hover{border-color:var(--amber-d);color:var(--text);}
+    .modal-btn.primary{border-color:var(--amber-d);color:var(--amber);}
+    .modal-btn.primary:hover{border-color:var(--amber);color:var(--amber-g);}
 
+    /* ── ITEMS ── */
+    .items-grid{display:grid;gap:.65rem;}
+    .item-card{
+      background:var(--s1);border:1px solid var(--border);
+      padding:1.1rem 1.25rem;
+      display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start;
+      transition:border-color .2s;
+    }
+    .item-card:hover{border-color:var(--border2);}
+
+    .item-type{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-d);margin-bottom:.3rem;}
+    .item-title{font-family:var(--serif);font-weight:400;font-size:.98rem;color:var(--text);line-height:1.35;margin-bottom:.25rem;}
+    .item-creator{font-size:.8rem;color:var(--muted);margin-bottom:.5rem;}
+    .item-review{font-size:.82rem;color:var(--faint);font-style:italic;line-height:1.55;margin-bottom:.5rem;}
+
+    .item-stars{display:flex;gap:.2rem;margin-bottom:.4rem;}
+    .item-star{font-size:.9rem;color:var(--faint);}
+    .item-star.lit{color:var(--amber);}
+
+    .item-status{
+      display:inline-block;font-family:var(--mono);font-size:.52rem;
+      letter-spacing:.08em;text-transform:uppercase;
+      padding:.15rem .55rem;border-radius:2px;
+    }
+    .status-reading{color:var(--amber);background:rgba(212,146,58,.1);}
+    .status-done{color:var(--green);background:var(--green-d);}
+    .status-next{color:var(--faint);background:var(--s2);}
+    .status-listening{color:var(--amber);background:rgba(212,146,58,.1);}
+    .status-watching{color:var(--amber);background:rgba(212,146,58,.1);}
+    .status-occasional{color:var(--faint);background:var(--s2);}
+    .status-abandoned{color:var(--red);background:var(--red-d);}
+
+    .item-actions{display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;}
+    .del-btn{
+      background:none;border:1px solid transparent;
+      color:var(--faint);font-family:var(--mono);font-size:.58rem;
+      padding:.25rem .45rem;cursor:pointer;
+      transition:border-color .2s,color .2s;
+    }
+    .del-btn:hover{border-color:var(--red);color:var(--red);}
+
+    /* Empty state */
+    .empty{padding:3.5rem 0;text-align:center;}
+    .empty p{font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--faint);line-height:1.7;}
+
+    /* ── FOOTER ── */
     footer{border-top:1px solid var(--border);padding:1.75rem var(--pad);max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;}
     footer p{font-family:var(--mono);font-size:.6rem;color:var(--faint);letter-spacing:.04em;}
+
+    @media(max-width:520px){
+      .item-card{grid-template-columns:1fr;}
+      .item-actions{flex-direction:row;align-items:center;}
+    }
   </style>
 </head>
 <body>
+
+  <!-- ── NAV ── -->
   <nav>
     <div class="nav-inner">
-      <a href="index.html" class="nav-home">Home</a>
-      <a href="index.html" class="nav-name">[Martin Muchiri]</a>
+      <a href="index.html" class="mark" title="Home">
+        <span>YN</span><!-- FILL IN: your initials -->
+      </a>
       <ul class="nav-links">
         <li><a href="about.html">About</a></li>
         <li><a href="research.html">Research</a></li>
         <li><a href="blog.html">Blog</a></li>
-        <li><a href="shelf.html" class="current">Shelf</a></li>
+        <li><a href="shelf.html" class="cur">Shelf</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -123,155 +185,311 @@
     <div class="wrap">
 
       <div class="page-header">
-        <p class="page-eyebrow">Shelf</p>
+        <p class="eyebrow">Shelf</p>
         <h1>What I am reading,<br>listening to, watching</h1>
-        <p class="header-note">Updated as I go. Status: reading · done · next.</p>
+        <p class="header-sub">Add anything. Rate it. Forget it. Come back to it.</p>
       </div>
 
-      <div class="section">
-        <div class="tabs">
-          <div class="tab active" onclick="switchTab(this,'books')">Books</div>
-          <div class="tab" onclick="switchTab(this,'music')">Music</div>
-          <div class="tab" onclick="switchTab(this,'pods')">Podcasts</div>
-        </div>
-
-        <!-- BOOKS -->
-        <div class="panel active" id="books">
-          <div class="m-grid">
-
-            <div class="m-card">
-              <div class="m-cover book bk1"><p class="spine">RACE AFTER TECHNOLOGY · RUHA BENJAMIN</p></div>
-              <p class="m-title">Race After Technology</p>
-              <p class="m-author">Ruha Benjamin</p>
-              <p class="m-status">Reading</p>
-            </div>
-
-            <div class="m-card">
-              <div class="m-cover book bk2"><p class="spine">ATLAS OF AI · KATE CRAWFORD</p></div>
-              <p class="m-title">Atlas of AI</p>
-              <p class="m-author">Kate Crawford</p>
-              <p class="m-status">Reading</p>
-            </div>
-
-            <div class="m-card">
-              <div class="m-cover book bk3"><p class="spine">DIGITAL DEMOCRACY ANALOGUE POLITICS · NYABOLA</p></div>
-              <p class="m-title">Digital Democracy, Analogue Politics</p>
-              <p class="m-author">Nanjala Nyabola</p>
-              <p class="m-status">Done</p>
-            </div>
-
-            <div class="m-card">
-              <div class="m-cover book bk4"><p class="spine">ELITE CAPTURE · TAIWO</p></div>
-              <p class="m-title">Elite Capture</p>
-              <p class="m-author">Olúfẹ́mi O. Táíwò</p>
-              <p class="m-status">Next</p>
-            </div>
-
-            <div class="m-card">
-              <div class="m-cover book bk5"><p class="spine">TEACHING MACHINES · AUDREY WATTERS</p></div>
-              <p class="m-title">Teaching Machines</p>
-              <p class="m-author">Audrey Watters</p>
-              <p class="m-status">Next</p>
-            </div>
-
-            <div class="m-card">
-              <div class="m-cover book bk6"><p class="spine">UNMASKING AI · JOY BUOLAMWINI</p></div>
-              <p class="m-title">Unmasking AI</p>
-              <p class="m-author">Joy Buolamwini</p>
-              <p class="m-status">Done</p>
-            </div>
-
-            <div class="m-card">
-              <div class="m-cover book bk7"><p class="spine">ALGORITHMS OF OPPRESSION · NOBLE</p></div>
-              <p class="m-title">Algorithms of Oppression</p>
-              <p class="m-author">Safiya Umoja Noble</p>
-              <p class="m-status">Next</p>
-            </div>
-
-            <div class="m-card">
-              <div class="m-cover book bk8"><p class="spine">EMPIRE OF AI · KAREN HAO</p></div>
-              <p class="m-title">Empire of AI</p>
-              <p class="m-author">Karen Hao</p>
-              <p class="m-status">Next</p>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- MUSIC -->
-        <div class="panel" id="music">
-          <div class="m-grid">
-            <!-- FILL IN: replace with your actual music -->
-            <div class="m-card">
-              <div class="m-cover album al1">
-                <svg class="cover-icon" width="36" height="36" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
-              </div>
-              <p class="m-title"><!-- Album title --></p>
-              <p class="m-author"><!-- Artist --></p>
-            </div>
-            <div class="m-card">
-              <div class="m-cover album al2">
-                <svg class="cover-icon" width="36" height="36" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
-              </div>
-              <p class="m-title"><!-- Album title --></p>
-              <p class="m-author"><!-- Artist --></p>
-            </div>
-            <div class="m-card">
-              <div class="m-cover album al3">
-                <svg class="cover-icon" width="36" height="36" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
-              </div>
-              <p class="m-title"><!-- Album title --></p>
-              <p class="m-author"><!-- Artist --></p>
-            </div>
-          </div>
-        </div>
-
-        <!-- PODCASTS -->
-        <div class="panel" id="pods">
-          <ul class="pod-list">
-            <li class="pod-item">
-              <span class="pod-num">01</span>
-              <div>
-                <p class="pod-name">Tech Won't Save Us</p>
-                <p class="pod-host">Paris Marx</p>
-                <p class="pod-status">Listening</p>
-              </div>
-            </li>
-            <li class="pod-item">
-              <span class="pod-num">02</span>
-              <div>
-                <p class="pod-name">Hard Fork</p>
-                <p class="pod-host">Kevin Roose & Casey Newton · NYT</p>
-                <p class="pod-status">Occasional</p>
-              </div>
-            </li>
-            <!-- FILL IN: add your actual podcasts here -->
-            <li class="pod-item">
-              <span class="pod-num">03</span>
-              <div>
-                <p class="pod-name"><!-- Podcast name --></p>
-                <p class="pod-host"><!-- Host --></p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
+      <div class="tabs">
+        <div class="tab active" data-tab="books">Books</div>
+        <div class="tab" data-tab="music">Music</div>
+        <div class="tab" data-tab="pods">Podcasts</div>
+        <div class="tab" data-tab="other">Other</div>
       </div>
+
+      <!-- BOOKS -->
+      <div class="panel active" id="panel-books">
+        <button class="add-btn" data-type="books">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+          Add book
+        </button>
+        <div class="items-grid" id="grid-books"></div>
+        <div class="empty" id="empty-books" style="display:none">
+          <p>Nothing here yet.<br>Add the first book.</p>
+        </div>
+      </div>
+
+      <!-- MUSIC -->
+      <div class="panel" id="panel-music">
+        <button class="add-btn" data-type="music">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+          Add album or track
+        </button>
+        <div class="items-grid" id="grid-music"></div>
+        <div class="empty" id="empty-music" style="display:none">
+          <p>Nothing here yet.<br>Add the first album.</p>
+        </div>
+      </div>
+
+      <!-- PODCASTS -->
+      <div class="panel" id="panel-pods">
+        <button class="add-btn" data-type="pods">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+          Add podcast
+        </button>
+        <div class="items-grid" id="grid-pods"></div>
+        <div class="empty" id="empty-pods" style="display:none">
+          <p>Nothing here yet.<br>Add the first podcast.</p>
+        </div>
+      </div>
+
+      <!-- OTHER -->
+      <div class="panel" id="panel-other">
+        <button class="add-btn" data-type="other">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+          Add anything
+        </button>
+        <div class="items-grid" id="grid-other"></div>
+        <div class="empty" id="empty-other" style="display:none">
+          <p>Films, courses, newsletters — anything.</p>
+        </div>
+      </div>
+
     </div>
   </main>
 
   <footer>
-    <p>[Martin Muchiri] · Nairobi · 2026</p>
+    <p>Nairobi · 2026</p>
     <p>← <a href="index.html" style="color:var(--faint);border-color:transparent;">home</a></p>
   </footer>
 
+  <!-- ── ADD MODAL ── -->
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <h2 id="modal-title">Add to shelf</h2>
+
+      <div class="field">
+        <label>Title *</label>
+        <input type="text" id="f-title" placeholder="e.g. Race After Technology" />
+      </div>
+      <div class="field">
+        <label id="creator-label">Author</label>
+        <input type="text" id="f-creator" placeholder="e.g. Ruha Benjamin" />
+      </div>
+      <div class="field">
+        <label>Status</label>
+        <select id="f-status">
+          <option value="reading">Reading</option>
+          <option value="done">Done</option>
+          <option value="next">Next up</option>
+          <option value="listening">Listening</option>
+          <option value="watching">Watching</option>
+          <option value="occasional">Occasional</option>
+          <option value="abandoned">Abandoned</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Rating</label>
+        <div class="star-row" id="star-row">
+          <button class="star-btn" data-v="1" type="button">★</button>
+          <button class="star-btn" data-v="2" type="button">★</button>
+          <button class="star-btn" data-v="3" type="button">★</button>
+          <button class="star-btn" data-v="4" type="button">★</button>
+          <button class="star-btn" data-v="5" type="button">★</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Note (optional)</label>
+        <textarea id="f-note" placeholder="A sentence or two about why it matters to you…"></textarea>
+      </div>
+
+      <div class="modal-btns">
+        <button class="modal-btn" id="cancel-btn">Cancel</button>
+        <button class="modal-btn primary" id="save-btn">Save</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    function switchTab(el, panel) {
+  /* ── STORAGE KEY ── */
+  const KEY = 'shelf_v1';
+
+  /* ── LOAD / SAVE ── */
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || { books:[], music:[], pods:[], other:[] }; }
+    catch { return { books:[], music:[], pods:[], other:[] }; }
+  }
+  function save(data) { localStorage.setItem(KEY, JSON.stringify(data)); }
+
+  /* ── RENDER ── */
+  const statusClass = {
+    reading:'status-reading', done:'status-done', next:'status-next',
+    listening:'status-listening', watching:'status-watching',
+    occasional:'status-occasional', abandoned:'status-abandoned'
+  };
+  const statusLabel = {
+    reading:'Reading', done:'Done', next:'Next up',
+    listening:'Listening', watching:'Watching',
+    occasional:'Occasional', abandoned:'Abandoned'
+  };
+
+  function renderStars(n) {
+    return Array.from({length:5}, (_,i) =>
+      `<span class="item-star${i < n ? ' lit' : ''}">★</span>`
+    ).join('');
+  }
+
+  function renderGrid(type) {
+    const data = load();
+    const items = data[type] || [];
+    const grid  = document.getElementById('grid-' + type);
+    const empty = document.getElementById('empty-' + type);
+
+    if (!items.length) {
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    grid.innerHTML = items.map((item, idx) => `
+      <div class="item-card">
+        <div>
+          <p class="item-type">${type === 'books' ? 'Book' : type === 'music' ? 'Music' : type === 'pods' ? 'Podcast' : 'Other'}</p>
+          <p class="item-title">${esc(item.title)}</p>
+          ${item.creator ? `<p class="item-creator">${esc(item.creator)}</p>` : ''}
+          ${item.rating ? `<div class="item-stars">${renderStars(item.rating)}</div>` : ''}
+          ${item.note ? `<p class="item-review">${esc(item.note)}</p>` : ''}
+          ${item.status ? `<span class="item-status ${statusClass[item.status] || ''}">${statusLabel[item.status] || item.status}</span>` : ''}
+        </div>
+        <div class="item-actions">
+          <button class="del-btn" data-type="${type}" data-idx="${idx}" title="Remove">✕</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderAll() {
+    ['books','music','pods','other'].forEach(renderGrid);
+  }
+
+  function esc(str) {
+    return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* ── TABS ── */
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-      el.classList.add('active');
-      document.getElementById(panel).classList.add('active');
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  /* ── ADD MODAL STATE ── */
+  let currentType = 'books';
+  let formRating  = 0;
+
+  const overlay    = document.getElementById('overlay');
+  const modalTitle = document.getElementById('modal-title');
+  const creatorLbl = document.getElementById('creator-label');
+  const fTitle     = document.getElementById('f-title');
+  const fCreator   = document.getElementById('f-creator');
+  const fStatus    = document.getElementById('f-status');
+  const fNote      = document.getElementById('f-note');
+  const starBtns   = document.querySelectorAll('.star-btn');
+
+  const typeLabels = { books:'book', music:'album or track', pods:'podcast', other:'item' };
+  const creatorLabels = { books:'Author', music:'Artist', pods:'Host', other:'Creator' };
+  const defaultStatus = { books:'reading', music:'listening', pods:'listening', other:'reading' };
+
+  function openModal(type) {
+    currentType = type;
+    formRating  = 0;
+    fTitle.value = ''; fCreator.value = ''; fNote.value = '';
+    modalTitle.textContent = 'Add ' + (typeLabels[type] || 'item');
+    creatorLbl.textContent = creatorLabels[type] || 'Creator';
+    fStatus.value = defaultStatus[type] || 'reading';
+    updateStarUI(0);
+    overlay.classList.add('open');
+    setTimeout(() => fTitle.focus(), 60);
+  }
+
+  function closeModal() { overlay.classList.remove('open'); }
+
+  function updateStarUI(n) {
+    starBtns.forEach(b => b.classList.toggle('lit', +b.dataset.v <= n));
+  }
+
+  /* Star click */
+  starBtns.forEach(b => {
+    b.addEventListener('click', () => {
+      formRating = +b.dataset.v;
+      updateStarUI(formRating);
+    });
+    b.addEventListener('mouseenter', () => updateStarUI(+b.dataset.v));
+    b.addEventListener('mouseleave', () => updateStarUI(formRating));
+  });
+
+  /* Open via add buttons */
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => openModal(btn.dataset.type));
+  });
+
+  document.getElementById('cancel-btn').addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  /* Save */
+  document.getElementById('save-btn').addEventListener('click', () => {
+    const title = fTitle.value.trim();
+    if (!title) { fTitle.focus(); return; }
+
+    const data = load();
+    data[currentType].unshift({
+      title,
+      creator: fCreator.value.trim(),
+      status:  fStatus.value,
+      rating:  formRating,
+      note:    fNote.value.trim(),
+      added:   Date.now()
+    });
+    save(data);
+    renderGrid(currentType);
+    closeModal();
+  });
+
+  /* Enter key saves */
+  document.getElementById('overlay').addEventListener('keydown', e => {
+    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+      document.getElementById('save-btn').click();
     }
+  });
+
+  /* Delete */
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.del-btn');
+    if (!btn) return;
+    const type = btn.dataset.type;
+    const idx  = +btn.dataset.idx;
+    const data = load();
+    data[type].splice(idx, 1);
+    save(data);
+    renderGrid(type);
+  });
+
+  /* ── SEED DATA (first visit only) ── */
+  (function seedIfEmpty() {
+    const d = load();
+    if (d.books.length || d.music.length || d.pods.length) return;
+    d.books = [
+      { title:'Race After Technology', creator:'Ruha Benjamin', status:'reading', rating:0, note:'', added:Date.now() },
+      { title:'Atlas of AI', creator:'Kate Crawford', status:'reading', rating:0, note:'', added:Date.now()-1000 },
+      { title:'Digital Democracy, Analogue Politics', creator:'Nanjala Nyabola', status:'done', rating:5, note:'The most useful political framework for understanding technology in Kenya.', added:Date.now()-2000 },
+      { title:'Elite Capture', creator:'Olúfẹ́mi O. Táíwò', status:'next', rating:0, note:'', added:Date.now()-3000 },
+      { title:'Teaching Machines', creator:'Audrey Watters', status:'next', rating:0, note:'', added:Date.now()-4000 },
+      { title:'Unmasking AI', creator:'Joy Buolamwini', status:'done', rating:5, note:'The coded gaze argument is the one I keep returning to.', added:Date.now()-5000 }
+    ];
+    d.pods = [
+      { title:'Tech Won\'t Save Us', creator:'Paris Marx', status:'listening', rating:4, note:'The transportation chapter is the best single analogy for AI in education.', added:Date.now() }
+    ];
+    save(d);
+  })();
+
+  /* ── INIT ── */
+  renderAll();
   </script>
 </body>
 </html>
