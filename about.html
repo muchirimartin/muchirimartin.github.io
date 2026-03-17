@@ -1,383 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — [Martin Muchiri]</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=Space+Mono:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
-
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About</title><!-- CHANGE PER PAGE -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23111009'/><circle cx='16' cy='16' r='6' fill='none' stroke='%23D4923A' stroke-width='1.5'/><line x1='16' y1='4' x2='16' y2='10' stroke='%23D4923A' stroke-width='1.5'/><line x1='16' y1='22' x2='16' y2='28' stroke='%23D4923A' stroke-width='1.5'/><line x1='4' y1='16' x2='10' y2='16' stroke='%23D4923A' stroke-width='1.5'/><line x1='22' y1='16' x2='28' y2='16' stroke='%23D4923A' stroke-width='1.5'/></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=Space+Mono:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --bg:       #111009;
-      --surface:  #1A1814;
-      --surface2: #221F19;
-      --text:     #F0EAE0;
-      --muted:    #9A9080;
-      --faint:    #5C5548;
-      --amber:    #D4923A;
-      --amber-d:  #8A5A1A;
-      --amber-g:  #F0B060;
-      --green:    #4A7C5F;
-      --green-d:  #2A4A38;
-      --border:   #2E2A24;
-      --border2:  #3A362E;
-      --serif:    'Fraunces', Georgia, serif;
-      --body:     'Source Serif 4', Georgia, serif;
-      --mono:     'Space Mono', monospace;
-      --max:      660px;
-      --pad:      clamp(1.25rem, 5vw, 2.5rem);
+    :root{
+      --bg:#0D0C09;--surface:#181512;--surface2:#201D16;
+      --text:#EDE7DB;--muted:#8E8476;--faint:#504A42;
+      --amber:#C8882E;--amber-d:#7A5018;--amber-g:#E8A84A;
+      --green:#3A6448;--green-d:#1E3428;
+      --border:#282420;--border2:#322E26;
+      --serif:'Fraunces',Georgia,serif;
+      --body:'Source Serif 4',Georgia,serif;
+      --mono:'Space Mono',monospace;
+      --max:660px;--pad:clamp(1.25rem,5vw,2.5rem);
     }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{font-size:16px;scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.75;-webkit-font-smoothing:antialiased;min-height:100vh;}
+    ::selection{background:var(--amber-d);color:var(--text);}
+    a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber-d);transition:color .2s,border-color .2s;}
+    a:hover{color:var(--amber-g);border-color:var(--amber);}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--body);
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
+    /* ── HERO STRIP ── */
+    .hero-strip{
+      height: 280px;
+      background-size:cover;
+      background-position:center;
+      position:relative;
+      overflow:hidden;
     }
-
-    ::selection { background: var(--amber-d); color: var(--text); }
-
-    a {
-      color: var(--amber);
-      text-decoration: none;
-      border-bottom: 1px solid var(--amber-d);
-      transition: color 0.2s, border-color 0.2s;
+    .hero-strip::after{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(to bottom, rgba(13,12,9,.2) 0%, rgba(13,12,9,.6) 60%, rgba(13,12,9,1) 100%);
     }
-    a:hover { color: var(--amber-g); border-color: var(--amber); }
-
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+    .hero-strip-text{
+      position:absolute;bottom:1.75rem;left:var(--pad);z-index:2;
+      max-width:var(--max);
+    }
+    .hero-eyebrow{
+      font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--amber);margin-bottom:.5rem;
+    }
+    .hero-h1{
+      font-family:var(--serif);font-weight:300;font-style:italic;
+      font-size:clamp(1.8rem,4.5vw,2.5rem);line-height:1.15;
+      letter-spacing:-.01em;color:var(--text);
+    }
 
     /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(17,16,9,0.94);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem var(--pad);
+    nav{
+      position:sticky;top:0;z-index:100;
+      background:rgba(13,12,9,.95);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);
+      padding:.9rem var(--pad);
     }
-    .nav-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .nav-inner{max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+    /* Home icon only — no name -->
+    .nav-home{
+      display:flex;align-items:center;justify-content:center;
+      width:32px;height:32px;
+      border:1px solid var(--border2);
+      color:var(--faint);border-radius:3px;
+      transition:color .2s,border-color .2s;
     }
-    .nav-home {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.06em;
-      color: var(--faint);
-      border: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: color 0.2s;
+    .nav-home:hover{color:var(--amber);border-color:var(--amber-d);}
+    .nav-home svg{width:14px;height:14px;}
+    /* Rotating quote in nav centre */
+    .nav-quote{
+      font-family:var(--serif);font-style:italic;font-size:.75rem;
+      font-weight:300;color:var(--faint);max-width:240px;
+      text-align:center;line-height:1.3;
     }
-    .nav-home:hover { color: var(--muted); border: none; }
-    .nav-home::before { content: '←'; font-size: 0.7rem; }
+    .nav-links{display:flex;gap:1.5rem;list-style:none;}
+    .nav-links a{
+      font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--faint);border:none;transition:color .2s;
+    }
+    .nav-links a:hover,.nav-links a.current{color:var(--amber);}
 
-    .nav-name {
-      font-family: var(--serif);
-      font-weight: 300;
-      font-size: 0.9rem;
-      color: var(--text);
-      border: none;
-      letter-spacing: 0.01em;
-    }
-    .nav-name:hover { color: var(--amber); border: none; }
+    /* ── CONTENT SECTIONS ── */
+    .section{padding:2.5rem 0;}
+    .section+.section{border-top:1px solid var(--border);}
 
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--faint);
-      border: none;
-      transition: color 0.2s;
+    .label{
+      font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--faint);
+      margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;
     }
-    .nav-links a:hover { color: var(--amber); }
-    .nav-links a.current { color: var(--amber); }
+    .label::after{content:'';flex:1;height:1px;background:var(--border);}
 
-    /* ── PAGE HEADER ── */
-    .page-header {
-      padding: 3.5rem 0 2.5rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 3rem;
+    /* PROSE */
+    .prose p{font-size:1rem;font-weight:300;line-height:1.88;color:var(--text);max-width:580px;}
+    .prose p+p{margin-top:1.25rem;}
+    .pull{
+      font-family:var(--serif);font-size:1.2rem;font-weight:300;font-style:italic;
+      color:var(--amber);border-left:2px solid var(--amber-d);
+      padding:.25rem 0 .25rem 1.25rem;margin:2rem 0;line-height:1.5;
     }
 
-    .page-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 0.75rem;
-    }
+    /* RESEARCH */
+    .r-item{padding:1.75rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:2.5rem 1fr;gap:1rem;}
+    .r-item:first-child{border-top:1px solid var(--border);}
+    .r-num{font-family:var(--mono);font-size:.6rem;color:var(--amber-d);padding-top:.25rem;}
+    .r-item h3{font-family:var(--serif);font-weight:400;font-size:1.05rem;color:var(--text);margin-bottom:.5rem;line-height:1.35;}
+    .r-item p{font-size:.88rem;color:var(--muted);line-height:1.7;max-width:520px;}
+    .r-status{display:inline-block;margin-top:.75rem;font-family:var(--mono);font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green);background:var(--green-d);padding:.18rem .6rem;border-radius:2px;}
 
-    h1 {
-      font-family: var(--serif);
-      font-weight: 300;
-      font-style: italic;
-      font-size: clamp(2rem, 5vw, 2.75rem);
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-      color: var(--text);
-    }
+    /* BLOG */
+    .b-list{list-style:none;}
+    .b-item{padding:1.75rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:start;}
+    .b-item:first-child{border-top:1px solid var(--border);}
+    .b-cat{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:.45rem;}
+    .b-title{font-family:var(--serif);font-weight:400;font-size:1.05rem;color:var(--text);line-height:1.4;margin-bottom:.45rem;}
+    .b-title a{color:var(--text);border-color:transparent;}
+    .b-title a:hover{color:var(--amber-g);border-color:var(--amber-d);}
+    .b-excerpt{font-size:.85rem;color:var(--muted);line-height:1.65;max-width:460px;}
+    .b-date{font-family:var(--mono);font-size:.62rem;color:var(--faint);white-space:nowrap;}
 
-    /* ── SECTION LABEL ── */
-    .label {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--faint);
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
+    /* NOW */
+    .now-grid{display:grid;gap:.65rem;}
+    .now-item{display:flex;align-items:flex-start;gap:.75rem;padding:.85rem 1rem;background:var(--surface);border:1px solid var(--border);}
+    .now-dot{width:5px;height:5px;border-radius:50%;background:var(--amber-d);margin-top:.55rem;flex-shrink:0;}
+    .now-text{font-size:.88rem;color:var(--muted);line-height:1.65;}
+    .now-text em{color:var(--text);font-style:italic;}
 
-    /* ── BODY TEXT ── */
-    .prose { max-width: 580px; }
-    .prose p {
-      font-size: 1rem;
-      font-weight: 300;
-      line-height: 1.85;
-      color: var(--text);
+    /* TAGS */
+    .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:2rem;}
+    .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;color:var(--green);background:var(--green-d);padding:.2rem .6rem;border-radius:2px;}
+
+    /* CONTACT — large colored social icons */
+    .contact-intro{font-size:.95rem;color:var(--muted);font-weight:300;margin-bottom:2.5rem;max-width:460px;line-height:1.8;}
+    .socials{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;}
+    .social-item{
+      display:flex;flex-direction:column;align-items:center;gap:.5rem;
+      width:80px;cursor:pointer;text-decoration:none;border:none;
+      transition:transform .2s;
     }
-    .prose p + p { margin-top: 1.25rem; }
-
-    .pull-quote {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--amber);
-      border-left: 2px solid var(--amber-d);
-      padding: 0.25rem 0 0.25rem 1.25rem;
-      margin: 2rem 0;
-      line-height: 1.5;
+    .social-item:hover{transform:translateY(-3px);}
+    .social-icon{
+      width:56px;height:56px;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      transition:opacity .2s;
     }
-
-    /* ── RESEARCH ITEMS ── */
-    .research-list { margin-bottom: 2rem; }
-
-    .r-item {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 2rem 1fr;
-      gap: 1rem;
+    .social-icon svg{width:26px;height:26px;}
+    .social-label{
+      font-family:var(--mono);font-size:.52rem;letter-spacing:.08em;
+      text-transform:uppercase;opacity:0;
+      transition:opacity .2s;
+      color:var(--muted);
     }
-    .r-item:first-child { border-top: 1px solid var(--border); }
+    .social-item:hover .social-label{opacity:1;}
+    /* Brand colours */
+    .si-email  { background:#2A2420; }
+    .si-email svg { color:#C8882E; }
+    .si-bsky   { background:#0A2040; }
+    .si-bsky svg { color:#4A9AE0; }
+    .si-github { background:#1A1A1A; }
+    .si-github svg { color:#E0E0E0; }
+    .si-linkedin{ background:#0A1E3A; }
+    .si-linkedin svg { color:#4A88C8; }
+    .contact-note{padding:1.25rem;border-left:2px solid var(--amber-d);background:rgba(200,136,46,.04);}
+    .contact-note p{font-size:.85rem;color:var(--muted);line-height:1.7;}
 
-    .r-num {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      color: var(--amber-d);
-      padding-top: 0.2rem;
-    }
-    .r-item h3 {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: 0.95rem;
-      color: var(--text);
-      margin-bottom: 0.35rem;
-      line-height: 1.4;
-    }
-    .r-item p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
+    /* PODS */
+    .pod-list{list-style:none;}
+    .pod-item{padding:1.1rem 0;border-bottom:1px solid var(--border);}
+    .pod-item:first-child{border-top:1px solid var(--border);}
+    .pod-title{font-family:var(--serif);font-weight:400;font-size:.95rem;color:var(--text);margin-bottom:.2rem;}
+    .pod-host{font-size:.8rem;color:var(--muted);margin-bottom:.5rem;}
+    .pod-links{display:flex;gap:.5rem;flex-wrap:wrap;}
+    .pod-link{font-family:var(--mono);font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);border:1px solid var(--border);padding:.2rem .55rem;border-radius:2px;transition:color .2s,border-color .2s;}
+    .pod-link:hover{color:var(--amber);border-color:var(--amber-d);}
 
-    /* ── TAGS ── */
-    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 2rem; }
-    .tag {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.04em;
-      color: var(--green);
-      background: var(--green-d);
-      padding: 0.2rem 0.6rem;
-      border-radius: 2px;
-    }
-
-    /* ── BLOG ITEMS ── */
-    .blog-list { list-style: none; }
-    .b-item {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 1.5rem;
-      align-items: start;
-    }
-    .b-item:first-child { border-top: 1px solid var(--border); }
-    .b-cat {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 0.45rem;
-    }
-    .b-title {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: 0.98rem;
-      color: var(--text);
-      line-height: 1.4;
-      margin-bottom: 0.45rem;
-    }
-    .b-title a { color: var(--text); border-color: transparent; }
-    .b-title a:hover { color: var(--amber-g); border-color: var(--amber-d); }
-    .b-excerpt { font-size: 0.83rem; color: var(--muted); line-height: 1.6; max-width: 440px; }
-    .b-date { font-family: var(--mono); font-size: 0.62rem; color: var(--faint); white-space: nowrap; }
-
-    /* ── SHELF ── */
-    .shelf-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
-    .s-tab {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--faint);
-      padding: 0.6rem 1rem;
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: color 0.2s, border-color 0.2s;
-      user-select: none;
-    }
-    .s-tab:hover { color: var(--muted); }
-    .s-tab.active { color: var(--amber); border-bottom-color: var(--amber); }
-    .s-panel { display: none; }
-    .s-panel.active { display: block; }
-
-    .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1.25rem; }
-
-    .m-card { display: flex; flex-direction: column; gap: 0.55rem; }
-    .m-cover {
-      aspect-ratio: 2/3;
-      border: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-    .m-cover.album, .m-cover.pod { aspect-ratio: 1/1; }
-
-    .bk1 { background: linear-gradient(155deg,#1A2030,#0E1520); border-left: 3px solid #3A5A8A; }
-    .bk2 { background: linear-gradient(155deg,#2A1810,#1A0E08); border-left: 3px solid #8A4A1A; }
-    .bk3 { background: linear-gradient(155deg,#102018,#081410); border-left: 3px solid #2A6A4A; }
-    .bk4 { background: linear-gradient(155deg,#1E1020,#120A14); border-left: 3px solid #6A3A8A; }
-    .bk5 { background: linear-gradient(155deg,#201A10,#14100A); border-left: 3px solid #8A7A2A; }
-    .bk6 { background: linear-gradient(155deg,#201010,#140808); border-left: 3px solid #8A2A2A; }
-    .al1 { background: linear-gradient(135deg,#1A1020,#2A1030); }
-    .al2 { background: linear-gradient(135deg,#101A10,#102010); }
-    .pd1 { background: linear-gradient(135deg,#101820,#0A1018); }
-    .pd2 { background: linear-gradient(135deg,#181020,#100A18); }
-
-    .spine {
-      font-family: var(--mono);
-      font-size: 0.48rem;
-      color: rgba(255,255,255,0.15);
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      position: absolute;
-      left: 1rem; top: 0.75rem; bottom: 0.75rem;
-      overflow: hidden;
-    }
-
-    .cover-icon {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      opacity: 0.08;
-    }
-
-    .m-title { font-family: var(--serif); font-size: 0.78rem; font-weight: 400; color: var(--text); line-height: 1.3; }
-    .m-author { font-family: var(--mono); font-size: 0.58rem; color: var(--faint); margin-top: -0.2rem; }
-    .m-status { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber); margin-top: -0.15rem; }
-
-    /* ── NOW ── */
-    .now-grid { display: grid; gap: 0.65rem; }
-    .now-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      padding: 0.85rem 1rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-    }
-    .now-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--amber-d); margin-top: 0.55rem; flex-shrink: 0; }
-    .now-text { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
-    .now-text em { color: var(--text); font-style: italic; }
-
-    /* ── CONTACT ── */
-    .contact-intro { font-size: 0.95rem; color: var(--muted); font-weight: 300; margin-bottom: 2rem; max-width: 460px; line-height: 1.75; }
-
-    .c-links { display: flex; flex-wrap: wrap; gap: 0.65rem; }
-    .c-btn {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-      border: 1px solid var(--border2);
-      padding: 0.5rem 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .c-btn:hover { color: var(--amber); border-color: var(--amber-d); }
-
-    /* ── SECTION SPACING ── */
-    .section { padding: 2.5rem 0; }
-    .section + .section { border-top: 1px solid var(--border); }
+    /* ── MUSIC PLAYER ── */
+    #mplayer{position:fixed;bottom:1.5rem;right:var(--pad);z-index:200;display:flex;flex-direction:column;align-items:flex-end;gap:.45rem;}
+    .mp-toggle{background:rgba(13,12,9,.9);backdrop-filter:blur(10px);border:1px solid rgba(240,234,224,.12);color:var(--muted);font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;text-transform:uppercase;padding:.42rem .75rem;cursor:pointer;display:flex;align-items:center;gap:.4rem;transition:color .2s,border-color .2s;}
+    .mp-toggle:hover{color:var(--amber-g);border-color:var(--amber-d);}
+    .mp-dot{width:5px;height:5px;border-radius:50%;background:var(--faint);transition:background .3s;}
+    .mp-dot.on{background:var(--amber);animation:pulse 1.5s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+    .mp-panel{background:rgba(13,12,9,.94);backdrop-filter:blur(14px);border:1px solid rgba(240,234,224,.1);width:290px;display:none;overflow:hidden;}
+    .mp-panel.open{display:block;}
+    .mp-tabs{display:flex;border-bottom:1px solid rgba(240,234,224,.07);}
+    .mpt{flex:1;font-family:var(--mono);font-size:.48rem;letter-spacing:.07em;text-transform:uppercase;color:var(--faint);padding:.5rem .2rem;cursor:pointer;text-align:center;border-bottom:1.5px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s;white-space:nowrap;}
+    .mpt:hover{color:var(--muted);}
+    .mpt.active{color:var(--amber);border-bottom-color:var(--amber);}
+    .mp-pane{display:none;}
+    .mp-pane.active{display:block;}
+    .mp-note{padding:.5rem .65rem;font-size:.5rem;color:var(--faint);font-family:var(--mono);line-height:1.5;border-top:1px solid rgba(240,234,224,.06);}
 
     /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 1.75rem var(--pad);
-      max-width: var(--max);
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+    footer{
+      border-top:1px solid var(--border);
+      padding:1.75rem var(--pad);
+      max-width:var(--max);
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:.75rem;
     }
-    footer p { font-family: var(--mono); font-size: 0.6rem; color: var(--faint); letter-spacing: 0.04em; }
+    .footer-quote{
+      font-family:var(--serif);font-style:italic;font-size:.8rem;
+      font-weight:300;color:var(--faint);flex:1;
+      max-width:400px;line-height:1.55;
+    }
+    .footer-home{
+      display:flex;align-items:center;gap:.5rem;
+      font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--faint);border:none;
+      transition:color .2s;
+    }
+    .footer-home:hover{color:var(--amber);border:none;}
+    .footer-home svg{width:12px;height:12px;}
 
-    @media (max-width: 560px) {
-      .b-item { grid-template-columns: 1fr; }
+    @media(max-width:560px){
+      .b-item{grid-template-columns:1fr;}
+      .nav-quote{display:none;}
+      .hero-strip{height:200px;}
     }
   </style>
 </head>
-
 <body>
 
-  <!-- ── NAV ── -->
+  <!-- NAV -->
   <nav>
     <div class="nav-inner">
-      <a href="index.html" class="nav-home">Home</a>
-      <a href="index.html" class="nav-name">[Martin Muchiri]</a>
+      <!-- Home icon — no name -->
+      <a href="index.html" class="nav-home" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
+          <path d="M9 21V12h6v9"/>
+        </svg>
+      </a>
+      <!-- Rotating quote -->
+      <p class="nav-quote" id="navQ"></p>
       <ul class="nav-links">
-        <li><a href="about.html" class="current">About</a></li>
+        <li><a href="about.html" class="current">About</a></li><!-- CHANGE current -->
         <li><a href="research.html">Research</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="shelf.html">Shelf</a></li>
@@ -386,53 +254,49 @@
     </div>
   </nav>
 
+  <!-- HERO STRIP — random image per visit -->
+  <div class="hero-strip" id="heroStrip">
+    <div class="hero-strip-text">
+      <p class="hero-eyebrow">About</p><!-- CHANGE PER PAGE -->
+      <h1 class="hero-h1">Who I am<br>and what I am doing</h1><!-- CHANGE PER PAGE -->
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       PAGE CONTENT — replace this section per page
+  ───────────────────────────────────────────────── -->
   <main>
     <div class="wrap">
 
-      <!-- ── PAGE HEADER ── -->
-      <div class="page-header">
-        <p class="page-eyebrow">About</p>
-        <h1>Who I am<br>and what I am doing</h1>
-      </div>
-
-      <!-- ── ABOUT TEXT ── -->
       <div class="section">
         <div class="prose">
           <p>
-            I am a Nairobi-based researcher and Computer Science graduate working
-            at the intersection of natural language processing, educational assessment,
-            and AI governance in African contexts. My work begins with a specific
-            observation: the AI tools entering Kenyan classrooms were not built for
-            Kenyan students.
+            I am a Nairobi-based researcher and Computer Science graduate
+            working at the intersection of natural language processing,
+            educational assessment, and AI governance in African contexts.
+            My work begins with a specific observation:
+            the AI tools entering Kenyan classrooms were not built for Kenyan students.
           </p>
-
-          <blockquote class="pull-quote">
+          <p class="pull">
             "The question is not whether AI will be in African schools.
-            It is whether it will serve African students —
-            or merely be applied to them."
-          </blockquote>
-
+             It is whether it will serve African students — or merely be applied to them."
+          </p>
           <p>
             I am building the evidence and infrastructure this question demands:
-            annotated datasets of Kenyan multilingual student writing, audit
-            methodologies for AI educational tools, and NLP resources for Swahili,
-            Kenyan English, and Sheng. This work lives at an intersection that has
-            not yet been claimed. I think of that as an invitation, not a warning.
+            annotated datasets of Kenyan multilingual student writing,
+            audit methodologies for AI educational tools,
+            and NLP resources for Swahili, Kenyan English, and Sheng.
+            This work lives at an intersection that has not yet been claimed.
+            I think of that as an invitation, not a warning.
           </p>
-
           <p>
-            <!-- FILL IN: your actual background, education, what you did before,
-                 what drives you. Keep it honest, specific, and in your voice. -->
-            My background is in [your field/CS], and I came to this research through
-            [a sentence about what brought you here — a specific experience, observation,
-            or provocation]. I am interested in the places where technical systems meet
-            human communities, and what happens to the community when the system was
-            not designed with them in mind.
+            <!-- FILL IN: 2–3 sentences in your actual voice about
+                 your background and what brought you to this work.
+                 The more specific and honest, the better. -->
           </p>
         </div>
       </div>
 
-      <!-- ── NOW ── -->
       <div class="section">
         <p class="label">Now</p>
         <div class="now-grid">
@@ -457,20 +321,306 @@
 
     </div>
   </main>
+  <!-- ─────────────────────────────────────────────
+       END PAGE CONTENT
+  ───────────────────────────────────────────────── -->
 
+  <!-- MUSIC PLAYER — identical on every inner page -->
+  <div id="mplayer">
+    <div class="mp-panel" id="mpPanel">
+      <div class="mp-tabs">
+        <div class="mpt active" onclick="swMp(this,'piano')">Piano</div>
+        <div class="mpt" onclick="swMp(this,'africa')">Africa</div>
+        <div class="mpt" onclick="swMp(this,'focus')">Focus</div>
+        <div class="mpt" onclick="swMp(this,'ambient')">Ambient</div>
+      </div>
+      <div class="mp-pane active" id="mp-piano"><iframe style="border-radius:0;display:block;" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX3Ogo9pFvBkY?utm_source=generator&theme=0" width="290" height="152" frameBorder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe></div>
+      <div class="mp-pane" id="mp-africa"><iframe style="border-radius:0;display:block;" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX8bXByKnhSmh?utm_source=generator&theme=0" width="290" height="152" frameBorder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe></div>
+      <div class="mp-pane" id="mp-focus"><iframe style="border-radius:0;display:block;" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWZeKCadgRdKQ?utm_source=generator&theme=0" width="290" height="152" frameBorder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe></div>
+      <div class="mp-pane" id="mp-ambient"><iframe style="border-radius:0;display:block;" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX889U0CL85jj?utm_source=generator&theme=0" width="290" height="152" frameBorder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe></div>
+      <p class="mp-note">Pause before switching tabs. Spotify: full playback. Others: 30-sec previews.</p>
+    </div>
+    <button class="mp-toggle" onclick="toggleMp()"><span class="mp-dot" id="mpDot"></span>listen</button>
+  </div>
+
+  <!-- FOOTER — quote + home only, no name, no location, no year -->
   <footer>
-    <p>[Your Name] · Nairobi · 2026</p>
-    <p>← <a href="index.html" style="color:var(--faint);border-color:transparent;">home</a></p>
+    <p class="footer-quote" id="footerQ"></p>
+    <a href="index.html" class="footer-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+      home
+    </a>
   </footer>
 
   <script>
-    // Tab switcher — reused on shelf.html
-    function switchTab(el, panel) {
-      document.querySelectorAll('.s-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.s-panel').forEach(p => p.classList.remove('active'));
-      el.classList.add('active');
-      document.getElementById(panel).classList.add('active');
-    }
+  /* HERO STRIP — picks a different image per page load */
+  const heroImgs = [
+    'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1400&q=75',
+    'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1400&q=75',
+    'https://images.unsplash.com/photo-1581852017103-68ac65514cf7?auto=format&fit=crop&w=1400&q=75',
+    'https://images.unsplash.com/photo-1547970810-dc1eac37d174?auto=format&fit=crop&w=1400&q=75',
+    'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=1400&q=75',
+    'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1400&q=75',
+    'https://picsum.photos/id/570/1400/500',
+    'https://picsum.photos/id/683/1400/500',
+    'https://picsum.photos/id/618/1400/500',
+    'https://picsum.photos/id/503/1400/500',
+  ];
+  // Different image each visit
+  document.getElementById('heroStrip').style.backgroundImage =
+    "url('" + heroImgs[Math.floor(Math.random() * heroImgs.length)] + "')";
+
+  /* QUOTES — same set as homepage, sources curated */
+  const QUOTES = [
+    // TONI MORRISON
+  { t: "If you have some power, then your job is to empower somebody else.", a: "Toni Morrison" },
+  { t: "The function of freedom is to free someone else.", a: "Toni Morrison" },
+  { t: "To name a thing is to begin to know it.", a: "Toni Morrison" },
+  { t: "If you can only be tall because someone else is on their knees, then you have a serious problem.", a: "Toni Morrison" },
+  { t: "You wanna fly, you got to give up the shit that weighs you down.", a: "Toni Morrison" },
+  { t: "No matter what they tell us or don't tell us, we know. We know the difference between the hand that helps and the hand that does not.", a: "Toni Morrison" },
+  { t: "The very serious function of racism is distraction. It keeps you from doing your work.", a: "Toni Morrison" },
+  { t: "We die. That may be the meaning of life. But we do language. That may be the measure of our lives.", a: "Toni Morrison" },
+
+  // FRANTZ FANON
+  { t: "Each generation must, out of relative obscurity, discover its mission, fulfil it or betray it.", a: "Frantz Fanon" },
+  { t: "The colonised man will first manifest this aggressiveness which has been deposited in his bones against his own people.", a: "Frantz Fanon" },
+  { t: "Leave this Europe where they are never done talking of Man, yet murder men everywhere they find them.", a: "Frantz Fanon" },
+  { t: "For the colonised people, the most essential value, because the most concrete, is first and foremost the land.", a: "Frantz Fanon" },
+  { t: "Colonialism is not a thinking machine, nor a body endowed with reasoning faculties. It is violence in its natural state.", a: "Frantz Fanon" },
+  { t: "The native is an oppressed person whose permanent dream is to become the persecutor.", a: "Frantz Fanon" },
+
+  // NGUGI WA THIONG'O
+  { t: "Africa is not rising. Africa is awake.", a: "Ngugi wa Thiong'o" },
+  { t: "Language carries culture, and culture carries the entire body of values by which we come to perceive ourselves and our place in the world.", a: "Ngugi wa Thiong'o" },
+  { t: "The language of African literature cannot be discussed meaningfully outside the context of those power relations between European and African languages.", a: "Ngugi wa Thiong'o" },
+  { t: "To control a people you must first control what they think about themselves and how they regard their history and culture.", a: "Ngugi wa Thiong'o" },
+  { t: "The biggest weapon wielded and actually daily unleashed against the African people is the cultural bomb.", a: "Ngugi wa Thiong'o" },
+
+  // CHINUA ACHEBE
+  { t: "Until the lion learns to write, every story will glorify the hunter.", a: "Chinua Achebe" },
+  { t: "A man who calls his kinsmen to a feast does not do so to save them from starving. They all have food in their own homes. When we gather together in the moonlit village ground it is not because of the moon. Every man can see it in his own compound. We come together because it is good for kinsmen to do so.", a: "Chinua Achebe" },
+  { t: "The white man is very clever. He came quietly and peaceably with his religion. We were amused at his foolishness and allowed him to stay. Now he has won our brothers, and our clan can no longer act like one.", a: "Chinua Achebe" },
+  { t: "When suffering knocks at your door and you say there is no seat left for him, he tells you not to worry because he has brought his own stool.", a: "Chinua Achebe" },
+  { t: "We cannot trample upon the humanity of others without devaluing our own.", a: "Chinua Achebe" },
+
+  // WOLE SOYINKA
+  { t: "A tiger does not proclaim its tigritude, it pounces.", a: "Wole Soyinka" },
+  { t: "Writers are often the most honest persons a nation has.", a: "Wole Soyinka" },
+  { t: "The man dies in all who keep silent in the face of tyranny.", a: "Wole Soyinka" },
+  { t: "I have one abiding religion — human liberty.", a: "Wole Soyinka" },
+  { t: "Battles, confrontations: these are the heritage and commitment of the creative mind.", a: "Wole Soyinka" },
+
+  // JOHN MBITI
+  { t: "I am because we are, and since we are, therefore I am.", a: "John Mbiti" },
+  { t: "The individual can only say 'I am' because of the community in which he lives.", a: "John Mbiti" },
+  { t: "Time is a two-dimensional phenomenon, with a long past, a present and virtually no future.", a: "John Mbiti" },
+
+  // JULIUS NYERERE
+  { t: "The purpose of development is the human being.", a: "Julius Nyerere" },
+  { t: "We, in Africa, have no more need of being converted to socialism than we have of being taught democracy.", a: "Julius Nyerere" },
+  { t: "In order to maintain our independence and our people's freedom, we ought to be very careful to tell the world what we are, what we intend to do and how we intend to do it.", a: "Julius Nyerere" },
+  { t: "Without unity, there is no future for Africa.", a: "Julius Nyerere" },
+
+  // KWAME NKRUMAH
+  { t: "I am not African because I was born in Africa, but because Africa was born in me.", a: "Kwame Nkrumah" },
+  { t: "We face neither East nor West; we face forward.", a: "Kwame Nkrumah" },
+  { t: "Action without thought is empty. Thought without action is blind.", a: "Kwame Nkrumah" },
+  { t: "The independence of Ghana is meaningless unless it is linked up with the total liberation of Africa.", a: "Kwame Nkrumah" },
+
+  // DEDAN KIMATHI
+  { t: "I refuse to be hanged as a criminal. I am a freedom fighter.", a: "Dedan Kimathi" },
+  { t: "It is better to die on our feet than to live on our knees.", a: "Dedan Kimathi" },
+
+  // TOM MBOYA
+  { t: "Our task is not to create the Africa of yesterday but the Africa of tomorrow.", a: "Tom Mboya" },
+  { t: "The future of Africa must be built on the mental and physical freedom of her people.", a: "Tom Mboya" },
+
+  // OLÚFẸ́MI O. TÁÍWÒ
+  { t: "Elite capture is the process by which the advantaged few steer resources, narratives, and policy toward their own interests.", a: "Olúfẹ́mi O. Táíwò" },
+  { t: "Being in the room is not enough. The question is who gets to decide what the room decides.", a: "Olúfẹ́mi O. Táíwò" },
+  { t: "The world that colonialism built still shapes who gains and who loses. Repair requires acknowledging that.", a: "Olúfẹ́mi O. Táíwò" },
+
+  // TIMNIT GEBRU
+  { t: "The moment we centre the most marginalised, we design better systems for everyone.", a: "Timnit Gebru" },
+  { t: "AI ethics without structural accountability is just reputation management.", a: "Timnit Gebru" },
+  { t: "You cannot build an ethical AI system without asking: who is it for, and who does it harm?", a: "Timnit Gebru" },
+
+  // WANDIA NJOYA
+  { t: "You cannot decolonise the mind with colonial tools.", a: "Wandia Njoya" },
+  { t: "The CBC does not reform education. It completes the colonial project of producing workers, not thinkers.", a: "Wandia Njoya" },
+  { t: "African children deserve knowledge, not just skills for someone else's economy.", a: "Wandia Njoya" },
+
+  // MORDECAI OGADA
+  { t: "Conservation cannot be separated from the communities that have always lived alongside wildlife.", a: "Mordecai Ogada" },
+  { t: "The African conservation narrative has been written by those who came to Africa to save it from Africans.", a: "Mordecai Ogada" },
+  { t: "When Africans are absent from the rooms where decisions about Africa are made, those decisions serve everyone except Africans.", a: "Mordecai Ogada" },
+
+  // KEOLU FOX
+  { t: "Indigenous data sovereignty is not a request. It is a right.", a: "Keolu Fox" },
+  { t: "You cannot build technology that serves indigenous people without indigenous people building it.", a: "Keolu Fox" },
+  { t: "The genomic data of indigenous communities is not raw material for someone else's discovery.", a: "Keolu Fox" },
+
+  // ALICE WALKER
+  { t: "The most common way people give up their power is by thinking they don't have any.", a: "Alice Walker" },
+  { t: "No person is your friend who demands your silence, or denies your right to grow.", a: "Alice Walker" },
+  { t: "Activism is the rent I pay for living on this planet.", a: "Alice Walker" },
+
+  // MARTIN LUTHER KING JR.
+  { t: "The function of education is to teach one to think intensively and to think critically. Intelligence plus character — that is the goal of true education.", a: "Martin Luther King Jr." },
+  { t: "Injustice anywhere is a threat to justice everywhere.", a: "Martin Luther King Jr." },
+  { t: "We must learn to live together as brothers or perish together as fools.", a: "Martin Luther King Jr." },
+  { t: "The arc of the moral universe is long, but it bends toward justice.", a: "Martin Luther King Jr." },
+
+  // BRYAN STEVENSON
+  { t: "The opposite of poverty is not wealth. The opposite of poverty is justice.", a: "Bryan Stevenson" },
+  { t: "We are all implicated when we allow other people to be mistreated.", a: "Bryan Stevenson" },
+  { t: "Each of us is more than the worst thing we've ever done.", a: "Bryan Stevenson" },
+
+  // MAYA ANGELOU
+  { t: "There is no greater agony than bearing an untold story inside you.", a: "Maya Angelou" },
+  { t: "I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.", a: "Maya Angelou" },
+  { t: "You may not control all the events that happen to you, but you can decide not to be reduced by them.", a: "Maya Angelou" },
+  { t: "We delight in the beauty of the butterfly, but rarely admit the changes it has gone through to achieve that beauty.", a: "Maya Angelou" },
+
+  // AUDRE LORDE
+  { t: "Your silence will not protect you.", a: "Audre Lorde" },
+  { t: "It is not our differences that divide us. It is our inability to recognise, accept, and celebrate those differences.", a: "Audre Lorde" },
+  { t: "I am not free while any woman is unfree, even when her shackles are very different from my own.", a: "Audre Lorde" },
+  { t: "Poetry is not a luxury. It is a vital necessity of our existence.", a: "Audre Lorde" },
+  { t: "When I dare to be powerful — to use my strength in the service of my vision, then it becomes less and less important whether I am afraid.", a: "Audre Lorde" },
+
+  // TSITSI DANGAREMBGA
+  { t: "The oppressor is always afraid of the oppressed.", a: "Tsitsi Dangarembga" },
+  { t: "It is not easy to write about what you love most when that love has been so thoroughly damaged.", a: "Tsitsi Dangarembga" },
+  { t: "We are the inheritors of a system that was not designed for our flourishing.", a: "Tsitsi Dangarembga" },
+
+  // NOVIOLET BULAWAYO
+  { t: "We are all immigrants from the future. We did not choose our time of arrival.", a: "NoViolet Bulawayo" },
+  { t: "We left because the country was no longer a country but a company where the president was also the owner.", a: "NoViolet Bulawayo" },
+
+  // JAMAICA KINCAID
+  { t: "I come from a place that was created by the powerful for the powerless.", a: "Jamaica Kincaid" },
+  { t: "No tourist wishes to go to a place that has too much of a real history.", a: "Jamaica Kincaid" },
+  { t: "A tourist is an ugly human being.", a: "Jamaica Kincaid" },
+
+  // JEAN RHYS
+  { t: "There is always another side, always.", a: "Jean Rhys" },
+  { t: "I have no country, no nationality. I have only the need to write.", a: "Jean Rhys" },
+
+  // ABDULRAZAK GURNAH
+  { t: "Memory is not static. It swells and recedes like the tide.", a: "Abdulrazak Gurnah" },
+  { t: "The past is not dead. It is not even past.", a: "Abdulrazak Gurnah" },
+  { t: "Migration is not an aberration. It is a human constant.", a: "Abdulrazak Gurnah" },
+
+  // GABRIEL GARCÍA MÁRQUEZ
+  { t: "A person doesn't die when he should but when he can.", a: "Gabriel García Márquez" },
+  { t: "Tell him that a person doesn't die when he should but when he can.", a: "Gabriel García Márquez" },
+  { t: "The secret of a good old age is simply an honourable pact with solitude.", a: "Gabriel García Márquez" },
+  { t: "Nobody teaches life anything.", a: "Gabriel García Márquez" },
+
+  // LEILA ABOULELA
+  { t: "Home is not a place. It is the people who know your name.", a: "Leila Aboulela" },
+  { t: "Faith is not the absence of doubt. It is the courage to go forward despite it.", a: "Leila Aboulela" },
+
+  // AMINATTA FORNA
+  { t: "What we call post-traumatic stress disorder, many cultures simply call memory.", a: "Aminatta Forna" },
+  { t: "In Africa we don't pathologise the past. We live in it.", a: "Aminatta Forna" },
+
+  // ALAN PATON
+  { t: "I have one great fear in my heart, that one day when they are turned to loving, they will find we are turned to hating.", a: "Alan Paton" },
+  { t: "There is a lovely road that runs from Ixopo into the hills. These hills are grass-covered and rolling, and they are lovely beyond any singing of it.", a: "Alan Paton" },
+
+  // CLAUDE McKAY
+  { t: "If we must die — let it not be like hogs hunted and penned in an inglorious spot.", a: "Claude McKay" },
+  { t: "Though far outnumbered let us show us brave, and for their thousand blows deal one deathblow.", a: "Claude McKay" },
+
+  // MARLON JAMES
+  { t: "History is what people want to forget.", a: "Marlon James" },
+  { t: "Truth has a way of demanding to be known even when those in power would rather it didn't.", a: "Marlon James" },
+
+  // HELEN KELLER
+  { t: "The only thing worse than being blind is having sight but no vision.", a: "Helen Keller" },
+  { t: "Alone we can do so little; together we can do so much.", a: "Helen Keller" },
+  { t: "Security is mostly a superstition. Life is either a daring adventure or nothing.", a: "Helen Keller" },
+
+  // UBUNTU / AFRICAN PROVERBS
+  { t: "A person is a person through other persons.", a: "Ubuntu philosophy" },
+  { t: "I am because we are.", a: "Ubuntu philosophy" },
+  { t: "A child who is not embraced by the village will burn it down to feel its warmth.", a: "African proverb" },
+  { t: "Until the last tree is cut and the last river poisoned, you will realise you cannot eat money.", a: "Cree proverb" },
+  { t: "Knowledge is like a garden: if it is not cultivated, it cannot be harvested.", a: "African proverb" },
+  { t: "The axe forgets, but the tree remembers.", a: "African proverb" },
+  { t: "He who learns, teaches.", a: "Ethiopian proverb" },
+  { t: "A tree that grows in the shade of another will die small.", a: "Tanzanian proverb" },
+  { t: "When elephants fight, it is the grass that suffers.", a: "East African proverb" },
+  { t: "Not to know is bad; not to want to know is worse.", a: "African proverb" },
+  { t: "You do not teach the paths of the forest to an old gorilla.", a: "Congolese proverb" },
+  { t: "The forest would be silent if no bird sang except the one that sang best.", a: "African proverb" },
+  { t: "Rain does not fall on one roof alone.", a: "Cameroonian proverb" },
+  { t: "A child who asks questions will not become a fool.", a: "African proverb" },
+
+  // HOPI / INDIGENOUS / PACIFIC
+  { t: "The one who tells the stories rules the world.", a: "Hopi proverb" },
+  { t: "We are the ones we have been waiting for.", a: "Hopi proverb" },
+  { t: "We do not inherit the earth from our ancestors; we borrow it from our children.", a: "Indigenous proverb" },
+  { t: "Take only what you need and leave the land as you found it.", a: "Arapaho teaching" },
+  { t: "When you are in doubt, don't.", a: "Māori teaching" },
+
+  // ANGELA DAVIS
+  { t: "I am no longer accepting the things I cannot change. I am changing the things I cannot accept.", a: "Angela Davis" },
+  { t: "Prisons do not disappear problems, they disappear human beings.", a: "Angela Davis" },
+  { t: "Radical simply means grasping things at the root.", a: "Angela Davis" },
+
+  // BELL HOOKS
+  { t: "The moment we choose to love we begin to move against domination, against oppression.", a: "bell hooks" },
+  { t: "There can be no love without justice.", a: "bell hooks" },
+  { t: "If any female feels she need anything beyond herself to legitimate and validate her existence, she is already giving away her power to be self-defining.", a: "bell hooks" },
+
+  // JAMES BALDWIN
+  { t: "Not everything that is faced can be changed, but nothing can be changed until it is faced.", a: "James Baldwin" },
+  { t: "The price of the liberation of the white people is the liberation of the Black people.", a: "James Baldwin" },
+  { t: "You think your pain and your heartbreak are unprecedented in the history of the world, but then you read.", a: "James Baldwin" },
+  { t: "I love America more than any other country in the world and, exactly for this reason, I insist on the right to criticise her perpetually.", a: "James Baldwin" },
+
+  // NELSON MANDELA
+  { t: "Education is the most powerful weapon which you can use to change the world.", a: "Nelson Mandela" },
+  { t: "It always seems impossible until it is done.", a: "Nelson Mandela" },
+  { t: "The greatest glory in living lies not in never falling, but in rising every time we fall.", a: "Nelson Mandela" },
+
+  // DESMOND TUTU
+  { t: "My humanity is bound up in yours, for we can only be human together.", a: "Desmond Tutu" },
+  { t: "Do your little bit of good where you are; it is those little bits of good put together that overwhelm the world.", a: "Desmond Tutu" },
+
+  // ADDITIONAL AFRICAN WOMEN VOICES
+  { t: "Silence is not the absence of something but the presence of everything.", a: "Ama Ata Aidoo" },
+  { t: "The African woman is not a problem to be solved. She is a power to be reckoned with.", a: "Chimamanda Ngozi Adichie" },
+  { t: "The problem with gender is that it prescribes how we should be rather than recognising how we are.", a: "Chimamanda Ngozi Adichie" },
+  { t: "We should all be feminists.", a: "Chimamanda Ngozi Adichie" },
+  { t: "Culture does not make people. People make culture.", a: "Chimamanda Ngozi Adichie" },
+
+  // CONTEMPORARY AFRICAN VOICES
+  { t: "If you don't design your own life plan, chances are you'll fall into someone else's plan.", a: "Strive Masiyiwa" },
+  { t: "Africa's greatest resource is not mineral wealth. It is human potential.", a: "Strive Masiyiwa" },
+
+  // ROLANDO HINOJOSA / CARIBBEAN
+  { t: "We are not afraid of ruins. We who plowed the prairies and built the cities can build again.", a: "Emma Lazarus" },
+  { t: "The land is the only thing that matters because it is the only thing that lasts.", a: "Caribbean proverb" },
+
+  // ABEBA BIRHANE
+  { t: "A system built on individualist assumptions will fail communities built on relational ones.", a: "Abeba Birhane" },
+  { t: "Algorithmic systems do not import objectivity. They import the assumptions of those who built them.", a: "Abeba Birhane" },
+  { t: "Ubuntu says: a person is a person through other persons. AI built on Descartes cannot serve Ubuntu communities.", a: "Abeba Birhane" },
+  
+  ];
+  // Changes every hour — consistent within a session
+  const q = QUOTES[new Date().getHours() % QUOTES.length];
+  document.getElementById('navQ').textContent    = '\u201c' + q.t + '\u201d';
+  document.getElementById('footerQ').textContent = '\u201c' + q.t + '\u201d \u2014 ' + q.a;
+
+  /* MUSIC PLAYER */
+  function toggleMp(){const p=document.getElementById('mpPanel'),d=document.getElementById('mpDot');p.classList.toggle('open');d.classList.toggle('on',p.classList.contains('open'));}
+  function swMp(el,id){document.querySelectorAll('.mpt').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.mp-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById('mp-'+id).classList.add('active');}
   </script>
 
 </body>
