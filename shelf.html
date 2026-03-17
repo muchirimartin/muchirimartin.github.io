@@ -169,7 +169,6 @@
   <nav>
     <div class="nav-inner">
       <a href="index.html" class="mark" title="Home">
-        <span>YN</span><!-- FILL IN: your initials -->
       </a>
       <ul class="nav-links">
         <li><a href="about.html">About</a></li>
@@ -194,7 +193,7 @@
         <div class="tab active" data-tab="books">Books</div>
         <div class="tab" data-tab="music">Music</div>
         <div class="tab" data-tab="pods">Podcasts</div>
-        <div class="tab" data-tab="other">Other</div>
+        <div class="tab" data-tab="other">Gallery</div>
       </div>
 
       <!-- BOOKS -->
@@ -233,13 +232,13 @@
         </div>
       </div>
 
-      <!-- OTHER -->
-      <div class="panel" id="panel-other">
-        <button class="add-btn" data-type="other">
+      <!-- GALLERY -->
+      <div class="panel" id="panel-gallery">
+        <button class="add-btn" data-type="gallery">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
-          Add anything
+          Media
         </button>
-        <div class="items-grid" id="grid-other"></div>
+        <div class="items-grid" id="grid-gallery"></div>
         <div class="empty" id="empty-other" style="display:none">
           <p>Films, courses, newsletters — anything.</p>
         </div>
@@ -249,7 +248,6 @@
   </main>
 
   <footer>
-    <p>Nairobi · 2026</p>
     <p>← <a href="index.html" style="color:var(--faint);border-color:transparent;">home</a></p>
   </footer>
 
@@ -306,8 +304,8 @@
 
   /* ── LOAD / SAVE ── */
   function load() {
-    try { return JSON.parse(localStorage.getItem(KEY)) || { books:[], music:[], pods:[], other:[] }; }
-    catch { return { books:[], music:[], pods:[], other:[] }; }
+    try { return JSON.parse(localStorage.getItem(KEY)) || { books:[], music:[], pods:[], gallery:[] }; }
+    catch { return { books:[], music:[], pods:[], gallery:[] }; }
   }
   function save(data) { localStorage.setItem(KEY, JSON.stringify(data)); }
 
@@ -345,7 +343,7 @@
     grid.innerHTML = items.map((item, idx) => `
       <div class="item-card">
         <div>
-          <p class="item-type">${type === 'books' ? 'Book' : type === 'music' ? 'Music' : type === 'pods' ? 'Podcast' : 'Other'}</p>
+          <p class="item-type">${type === 'books' ? 'Book' : type === 'music' ? 'Music' : type === 'pods' ? 'Podcast' : 'Gallery' : type === 'media' ? 'Gallery'}</p>
           <p class="item-title">${esc(item.title)}</p>
           ${item.creator ? `<p class="item-creator">${esc(item.creator)}</p>` : ''}
           ${item.rating ? `<div class="item-stars">${renderStars(item.rating)}</div>` : ''}
@@ -360,7 +358,7 @@
   }
 
   function renderAll() {
-    ['books','music','pods','other'].forEach(renderGrid);
+    ['books','music','pods','gallery'].forEach(renderGrid);
   }
 
   function esc(str) {
@@ -390,9 +388,9 @@
   const fNote      = document.getElementById('f-note');
   const starBtns   = document.querySelectorAll('.star-btn');
 
-  const typeLabels = { books:'book', music:'album or track', pods:'podcast', other:'item' };
-  const creatorLabels = { books:'Author', music:'Artist', pods:'Host', other:'Creator' };
-  const defaultStatus = { books:'reading', music:'listening', pods:'listening', other:'reading' };
+  const typeLabels = { books:'book', music:'album or track', pods:'podcast', gallery:'item' };
+  const creatorLabels = { books:'Author', music:'Artist', pods:'Host', gallery:'Creator' };
+  const defaultStatus = { books:'reading', music:'listening', pods:'listening', other:'reading or watching or viewing' };
 
   function openModal(type) {
     currentType = type;
